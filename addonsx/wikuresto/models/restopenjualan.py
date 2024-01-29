@@ -60,6 +60,21 @@ class RestoPenjualan(models.Model):
         record = super(RestoPenjualan, self).create(vals)
         return record
 
+    def unlink(self):
+        if self.restodetailpenjualanmakanan_ids:
+            a = []
+            for detail in self.restodetailpenjualanmakanan_ids:
+                a = self.env['resto.makanan'].search([('id','=',detail.restomakanan_id.id)]).mapped('restomakanandetail_ids')   
+                for rec in a:
+                    self.env['resto.bahan'].search([('id','=',rec.restobahan_id.id)]).write({'stok': rec.restobahan_id.stok + (rec.kebutuhan * detail.qty)})
+        if self.restodetailpenjualanminuman_ids:
+            a = []
+            for detail in self.restodetailpenjualanminuman_ids:
+                a = self.env['resto.minuman'].search([('id','=',detail.restominuman_id.id)]).mapped('restominumandetail_ids')   
+                for rec in a:
+                    self.env['resto.bahan'].search([('id','=',rec.restobahan_id.id)]).write({'stok': rec.restobahan_id.stok + (rec.kebutuhan * detail.qty)})
+        record = super(RestoPenjualan, self).unlink()
+
 class RestoDetailPenjualanMakanan(models.Model):
     _name = 'resto.detailpenjualanmakanan'
     _description = 'DetailPenjualanMakanan'
