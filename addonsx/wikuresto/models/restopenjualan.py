@@ -74,18 +74,33 @@ class RestoPenjualan(models.Model):
                 for rec in a:
                     self.env['resto.bahan'].search([('id','=',rec.restobahan_id.id)]).write({'stok': rec.restobahan_id.stok + (rec.kebutuhan * detail.qty)})
         record = super(RestoPenjualan, self).unlink()
+
     def write(self, vals):
-        for rec in self.restodetailpenjualanmakanan_ids:
-            if rec :
-                a = self.env['resto.makanan'].search([('id','=',rec.restomakanan_id.id)]).mapped('restomakanandetail_ids')   
-                for detail in a:
-                    self.env['resto.bahan'].search([('id','=',detail.restobahan_id.id)]).write({'stok': detail.restobahan_id.stok + (detail.kebutuhan * rec.qty)})
+        if self.restodetailpenjualanmakanan_ids:
+            for rec in self.restodetailpenjualanmakanan_ids:
+                if rec :
+                    a = self.env['resto.makanan'].search([('id','=',rec.restomakanan_id.id)]).mapped('restomakanandetail_ids')   
+                    for detail in a:
+                        self.env['resto.bahan'].search([('id','=',detail.restobahan_id.id)]).write({'stok': detail.restobahan_id.stok + (detail.kebutuhan * rec.qty)})
+        if self.restodetailpenjualanminuman_ids:
+            for rec in self.restodetailpenjualanminuman_ids:
+                if rec :
+                    a = self.env['resto.minuman'].search([('id','=',rec.restominuman_id.id)]).mapped('restominumandetail_ids')   
+                    for detail in a:
+                        self.env['resto.bahan'].search([('id','=',detail.restobahan_id.id)]).write({'stok': detail.restobahan_id.stok + (detail.kebutuhan * rec.qty)})
         record = super(RestoPenjualan, self).write(vals)
-        for rec in self.restodetailpenjualanmakanan_ids:
-            if rec :
-                a = self.env['resto.makanan'].search([('id','=',rec.restomakanan_id.id)]).mapped('restomakanandetail_ids')   
-                for detail in a:
-                    self.env['resto.bahan'].search([('id','=',detail.restobahan_id.id)]).write({'stok': detail.restobahan_id.stok - (detail.kebutuhan * rec.qty)})
+        if self.restodetailpenjualanmakanan_ids:
+            for rec in self.restodetailpenjualanmakanan_ids:
+                if rec :
+                    a = self.env['resto.makanan'].search([('id','=',rec.restomakanan_id.id)]).mapped('restomakanandetail_ids')   
+                    for detail in a:
+                        self.env['resto.bahan'].search([('id','=',detail.restobahan_id.id)]).write({'stok': detail.restobahan_id.stok - (detail.kebutuhan * rec.qty)})
+        if self.restodetailpenjualanminuman_ids:
+            for rec in self.restodetailpenjualanminuman_ids:
+                if rec :
+                    a = self.env['resto.minuman'].search([('id','=',rec.restominuman_id.id)]).mapped('restominumandetail_ids')   
+                    for detail in a:
+                        self.env['resto.bahan'].search([('id','=',detail.restobahan_id.id)]).write({'stok': detail.restobahan_id.stok - (detail.kebutuhan * rec.qty)})
         return record
 
 class RestoDetailPenjualanMakanan(models.Model):
