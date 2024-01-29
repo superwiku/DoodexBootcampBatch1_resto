@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- resto.penjualan tree view -->
+    <record id="resto_penjualan_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Penjualan</field>
+        <field name="model">resto.penjualan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="kode_penjualan"/>
+                <field name="tgl_transaksi"/>
+                <field name="membership"/>
+                <field name="nama"/>
+                <field name="total_bayar"/>
+            </tree>
+        </field>
+    </record>
+    <!-- resto.penjualan form view -->
+    <record id="resto_penjualan_view_form" model="ir.ui.view">
+        <field name="name">Form Penjualan</field>
+        <field name="model">resto.penjualan</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="kode_penjualan" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group col="2">
+                        <group string="Kode">
+                            <field name="qr_code" widget='image'/>                            
+                        </group>
+                        <group string="Data Transaksi">
+                            <!-- Add your fields here -->
+                            <field name="tgl_transaksi"/>
+                            <field name="membership"/>
+                            <field name="nama"/>
+                            <field name="total_bayar"/>
+                        </group>
+                    </group>
+                </sheet>
+                <sheet>
+                    <field name="restodetailpenjualanmakanan_ids">
+                        <tree editable='bottom'>
+                            <field name="restomakanan_id"/>
+                            <field name="qty"/>
+                            <field name="subtotal"/>
+                        </tree>
+                    </field>
+                </sheet>
+                <sheet>
+                    <field name="restodetailpenjualanminuman_ids">
+                        <tree editable='bottom'>
+                            <field name="restominuman_id"/>
+                            <field name="qty"/>
+                            <field name="subtotal"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- resto.penjualan action window -->
+    <record id="resto_penjualan_action" model="ir.actions.act_window">
+        <field name="name">Penjualan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">resto.penjualan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="resto_penjualan_menu_act" 
+            name="Penjualan" 
+            parent="wikuresto_transaksi_menu_categ" 
+            action="resto_penjualan_action" 
+            sequence="20"/>
+
+</odoo>

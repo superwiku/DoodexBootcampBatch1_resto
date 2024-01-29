@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="wikuresto_menu_root" 
+            name="Wiku Resto Management" 
+            sequence="10"/>
+    
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="wikuresto_bahanalat_menu_categ" 
+            name="Bahan dan Alat" 
+            parent="wikuresto_menu_root" 
+            sequence="5"/>
+    
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="wikuresto_makanan_minuman_menu_categ" 
+            name="Makanan dan Minuman" 
+            parent="wikuresto_menu_root" 
+            sequence="10"/>
+
+    <menuitem id="wikuresto_transaksi_menu_categ" 
+            name="Transaksi" 
+            parent="wikuresto_menu_root" 
+            sequence="15"/>
+</odoo>

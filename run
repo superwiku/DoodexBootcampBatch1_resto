@@ -1,0 +1,3 @@
+
+./odoo-bin --addons-path=/home/superwiku/odooproject/odoo16resto/addons,/home/superwiku/odooproject/odoo16resto/addonsx -d resto --db_port 5432 --xmlrpc-port=8069  --limit-memory-hard 0 --limit-time-real=10000 -u wikuresto
+

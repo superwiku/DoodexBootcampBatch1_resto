@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="wikuresto_seq_ref_penjualan_member" model="ir.sequence">
+        <field name="name">Referensi Penjualan Member</field>
+        <field name="code">wikuresto.referensi.penjualan_member</field>
+        <field name="prefix">WR.S</field>
+        <field name="padding">5</field>
+        <field name="suffix">M</field>
+        <field name="company_id" eval="False"/>   
+    </record>
+    
+    <record id="wikuresto_seq_ref_penjualan_nonmember" model="ir.sequence">
+        <field name="name">Referensi Penjualan Non Member</field>
+        <field name="code">wikuresto.referensi.penjualan_nonmember</field>
+        <field name="prefix">WR.S</field>
+        <field name="padding">5</field>
+        <field name="suffix">N</field>
+        <field name="company_id" eval="False"/> 
+    </record>
+    
+</odoo>

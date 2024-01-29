@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_resto_bahan,access.resto.bahan,model_resto_bahan,,1,1,1,1
+access_resto_makanan,access.resto.makanan,model_resto_makanan,,1,1,1,1
+access_resto_makanandetail,access.resto.makanandetail,model_resto_makanandetail,,1,1,1,1
+access_resto_minuman,access.resto.minuman,model_resto_minuman,,1,1,1,1
+access_resto_minumandetail,access.resto.minumandetail,model_resto_minumandetail,,1,1,1,1
+access_resto_penjualan,access.resto.penjualan,model_resto_penjualan,,1,1,1,1
+access_resto_detailpenjualanmakanan,access.resto.detailpenjualanmakanan,model_resto_detailpenjualanmakanan,,1,1,1,1
+access_resto_detailpenjualanminuman,access.resto.detailpenjualanminuman,model_resto_detailpenjualanminuman,,1,1,1,1

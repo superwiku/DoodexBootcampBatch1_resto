@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- resto.makanan tree view -->
+    <record id="resto_makanan_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Makanan</field>
+        <field name="model">resto.makanan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="harga"/>
+            </tree>
+        </field>
+    </record>
+    <!-- resto.makanan form view -->
+    <record id="resto_makanan_view_form" model="ir.ui.view">
+        <field name="name">Detail Makanan</field>
+        <field name="model">resto.makanan</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="harga"/>
+                        <field name="restomakanandetail_ids">
+                            <tree editable='bottom'>
+                                <field name="restobahan_id"/>
+                                <field name="kebutuhan"/>
+                            </tree>
+                        </field>                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- resto.makanan action window -->
+    <record id="resto_makanan_action" model="ir.actions.act_window">
+        <field name="name">Menu Makanan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">resto.makanan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="resto_makanan_menu_act" 
+            name="Menu Makanan" 
+            parent="wikuresto_makanan_minuman_menu_categ" 
+            action="resto_makanan_action" 
+            sequence="5"/>
+
+</odoo>
