@@ -26,6 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/referensi_penjualan.xml',
+        'data/referensi_member.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/menu.xml',
@@ -33,6 +34,7 @@
         'views/restomakanan_view.xml',
         'views/restominuman_view.xml',
         'views/restopenjualan_view.xml',
+        'views/restomember_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

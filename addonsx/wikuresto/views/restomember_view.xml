@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- res.partner inherit tree view -->
+<record id="res_partner_tree_view_inherit" model="ir.ui.view">
+    <field name="name">res.partner.inherit.view.tree</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_tree"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='phone']" position="before">
+            <field name="referensi"/>
+        </xpath>
+        
+    </field>
+</record>
+    <!-- res.partner inherit form view -->
+    <record id="res_partner_form_view_inherit" model="ir.ui.view">
+        <field name="name">Form Member</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='vat']" position="before">
+                <field name="referensi"/>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="is_member"/>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="replace"/>
+            <xpath expr="//field[@name='website']" position="replace"/>  
+
+            
+        </field>
+    </record>
+
+    <!-- res.partner action window -->
+    <record id="res_partner_member_action" model="ir.actions.act_window">
+        <field name="name">Member Area</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_member','=',True)]</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="resto_member_menu_act" 
+            name="Member Area" 
+            parent="wikuresto_menu_root" 
+            action="res_partner_member_action" 
+            sequence="17"/>
+
+</odoo>

@@ -11,6 +11,7 @@
                 <field name="tgl_transaksi"/>
                 <field name="membership"/>
                 <field name="nama"/>
+                <field name="nama_member"/>
                 <field name="total_bayar"/>
             </tree>
         </field>
@@ -26,7 +27,7 @@
                         <h1>
                             <field name="kode_penjualan" readonly="1"/>
                         </h1>
-                    </div>
+                    </div>                    
                     <group col="2">
                         <group string="Kode">
                             <field name="qr_code" widget='image'/>                            
@@ -35,7 +36,9 @@
                             <!-- Add your fields here -->
                             <field name="tgl_transaksi"/>
                             <field name="membership"/>
-                            <field name="nama"/>
+                            <field name="nama" attrs="{'invisible':[('membership','=',True)]}"/>
+                            <field name="nama_member" attrs="{'invisible':[('membership','!=',True)]}"/>
+                            <field name="ref_member" attrs="{'invisible':[('membership','!=',True)]}"/>
                             <field name="total_bayar"/>
                         </group>
                     </group>
@@ -45,7 +48,7 @@
                         <tree editable='bottom'>
                             <field name="restomakanan_id"/>
                             <field name="qty"/>
-                            <field name="subtotal"/>
+                            <field name="subtotal" sum="Total Bayar"/>
                         </tree>
                     </field>
                 </sheet>
@@ -54,7 +57,7 @@
                         <tree editable='bottom'>
                             <field name="restominuman_id"/>
                             <field name="qty"/>
-                            <field name="subtotal"/>
+                            <field name="subtotal" sum="Total Bayar"/>
                         </tree>
                     </field>
                 </sheet>

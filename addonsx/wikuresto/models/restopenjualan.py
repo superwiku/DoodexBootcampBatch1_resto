@@ -22,6 +22,9 @@ class RestoPenjualan(models.Model):
     kode_penjualan = fields.Char(string="Kode Penjualan", required=True, copy=False, readonly=True,
         default=lambda self: _('New'))
     nama = fields.Char(string='Nama Pembeli')
+    nama_member = fields.Many2one(comodel_name='res.partner', string='Nama Member', domain="[('is_member','=',True)]")
+    ref_member = fields.Char(string='No. Member', related='nama_member.referensi')
+    
     membership = fields.Boolean(string='Apakah member ?', default = False)    
     tgl_transaksi = fields.Datetime(string='Tanggal Transaksi', default=fields.Datetime.now())
     total_bayar = fields.Integer(compute='_compute_total_bayar', string='Total Bayar', store=True)
